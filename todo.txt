@@ -1,0 +1,22 @@
+ model protagonist
+ code protagonist controller
+ code animation on protagonist
+ draw protagonist
+ draw/model island stuff
+ code totems (worship slots)
+ code boss energy system (totem energy gen)
+ draw inhabitants
+ code inhabitant worshipping code
+ code attack controller (protagonist)
+ code totem damage system
+ code inhabitant ai
+ code potion pickup system
+ code protagonist health
+ code inhabitant bribe system
+ start menu
+ music
+ sound effects
+ particle effects
+ draw details
+ draw/model boss
+ expand camera controller
