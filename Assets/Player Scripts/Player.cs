@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
         }
         Vector3 combine = Vector3.ClampMagnitude(Vector3.right * m_horiz + Vector3.forward * m_vert,1.0f);
         rigidbody.AddForce(combine * m_inAirBoost * m_walkspeed/* * m_wallCollPenalty*/);
-        Debug.DrawLine(transform.position, transform.position + combine, new Color(combine.x,.5f,combine.z), 1.0f);
+        //Debug.DrawLine(transform.position, transform.position + combine, new Color(combine.x,.5f,combine.z), 1.0f);
 
         if (Mathf.Abs(m_horiz) > 0.1f || Mathf.Abs(m_vert) > 0.1f)
         {
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
             {
                 //rigidbody.velocity = new Vector2(0.0f, rigidbody.velocity.y);
                 m_wallCollPenalty = 0.0f;
-                Debug.DrawLine(p_hit.contacts[0].point, p_hit.contacts[0].point + normal,Color.green,1.0f);
+                //Debug.DrawLine(p_hit.contacts[0].point, p_hit.contacts[0].point + normal,Color.green,1.0f);
                 rigidbody.AddForce(new Vector2(normal.x * m_walkspeed * m_inAirBoost, 0.0f));
             }
         }
@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         normal /= (float)count;
         if (normal.y > 0.5f)
         {
-            Debug.DrawLine(p_hit.contacts[0].point, p_hit.contacts[0].point + normal, Color.red, 1.0f);
+            //Debug.DrawLine(p_hit.contacts[0].point, p_hit.contacts[0].point + normal, Color.red, 1.0f);
             m_onGround = true;
         }
         // Debug.Log("!");
