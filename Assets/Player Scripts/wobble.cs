@@ -9,6 +9,7 @@ public class wobble : MonoBehaviour
     public float m_posOffset;
     public float m_speed=1.0f;
     public float m_speedMp = 1.0f;
+    public Vector3 m_axis;
     Vector3 startPos;
 	// Use this for initialization
 	void Start () 
@@ -21,7 +22,7 @@ public class wobble : MonoBehaviour
     {
 	    if (m_active)
         {
-            transform.localPosition = new Vector3(startPos.x, m_posOffset + m_phasescale * Mathf.Sin(Time.time * m_speed * m_speedMp + m_phaseoffset), startPos.z);
+            transform.localPosition = startPos + m_axis * (m_posOffset + m_phasescale * Mathf.Sin(Time.time * m_speed * m_speedMp + m_phaseoffset));
         }
         else
         {

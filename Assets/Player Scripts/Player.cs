@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     float m_horiz;
     float m_vert;
     bool m_jumpTrigger=false;
-    float m_wallCollPenalty = 1.0f;
+    public float m_wallCollPenalty = 1.0f;
 
     private List<float> m_speeds = new List<float>();
     private Vector3 m_oldPos;
@@ -54,6 +54,14 @@ public class Player : MonoBehaviour
             if (n != null) n.m_active = true;
     }
 
+    void ActivateAllIdleAnims()
+    {
+        foreach (swing n in m_idleswings)
+            if (n != null) n.m_active = true;
+        foreach (wobble n in m_idlewobbles)
+            if (n != null) n.m_active = true;
+    }
+
     void SetSpeedOfAllWalkAnims(float p_speed)
     {
         foreach (swing n in m_walkswings)
@@ -68,6 +76,14 @@ public class Player : MonoBehaviour
         foreach (swing n in m_walkswings)
             if (n != null) n.m_active = false;
         foreach (wobble n in m_walkwobbles)
+            if (n != null) n.m_active = false;
+    }
+
+    void DeactivateAllIdleAnims()
+    {
+        foreach (swing n in m_idleswings)
+            if (n != null) n.m_active = false;
+        foreach (wobble n in m_idlewobbles)
             if (n != null) n.m_active = false;
     }
 
@@ -89,13 +105,17 @@ public class Player : MonoBehaviour
             rigidbody.drag = m_linDragJump;
             m_inAirBoost = 1.0f / m_linDragWalk;
         }
+        Vector3 combine = Vector3.ClampMagnitude(Vector3.right * m_horiz + Vector3.forward * m_vert,1.0f);
+        rigidbody.AddForce(combine * m_inAirBoost * m_walkspeed/* * m_wallCollPenalty*/);
+        Debug.DrawLine(transform.position, transform.position + combine, new Color(combine.x,.5f,combine.z), 1.0f);
 
-        rigidbody.AddForce(Vector3.right * m_horiz * m_inAirBoost * m_walkspeed * m_wallCollPenalty);
-
-
-        if (Mathf.Abs(m_horiz) > 0.1f)
+        if (Mathf.Abs(m_horiz) > 0.1f || Mathf.Abs(m_vert) > 0.1f)
         {
             ActivateAllWalkAnims();
+            DeactivateAllIdleAnims();
+
+            if (m_playerCharacterTransform)
+                m_playerCharacterTransform.LookAt(m_playerCharacterTransform.position + combine);
 /*
             if (m_horiz > 0.0f)
                 m_playerSprite.localScale = new Vector3(1.0f, 1.0f, 1.0f);
@@ -106,6 +126,7 @@ public class Player : MonoBehaviour
         else
         {
             DeactivateAllWalkAnims();
+            ActivateAllIdleAnims();
         }
 
         // THE JUMP CODEZ
@@ -169,7 +190,7 @@ public class Player : MonoBehaviour
             normal /= (float)count;
             if (Mathf.Abs(normal.x) > 0.5f)
             {
-                rigidbody.velocity = new Vector2(0.0f, rigidbody.velocity.y);
+                //rigidbody.velocity = new Vector2(0.0f, rigidbody.velocity.y);
                 m_wallCollPenalty = 0.0f;
                 Debug.DrawLine(p_hit.contacts[0].point, p_hit.contacts[0].point + normal,Color.green,1.0f);
                 rigidbody.AddForce(new Vector2(normal.x * m_walkspeed * m_inAirBoost, 0.0f));

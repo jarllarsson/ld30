@@ -47,6 +47,13 @@ ModelImporter:
     100082: upper_leg_l_0
     100084: upper_leg_r
     100086: upper_leg_r_0
+    100088: cloth
+    100090: spine_001
+    100092: spine_002
+    100094: spine_003
+    100096: spine_004
+    100098: spine_005
+    100100: spine_006
     400000: Cube
     400002: Plane
     400004: Plane_001
@@ -91,6 +98,13 @@ ModelImporter:
     400082: upper_leg_l_0
     400084: upper_leg_r
     400086: upper_leg_r_0
+    400088: cloth
+    400090: spine_001
+    400092: spine_002
+    400094: spine_003
+    400096: spine_004
+    400098: spine_005
+    400100: spine_006
     2300000: Cube
     2300002: Plane
     2300004: Plane_001
@@ -112,6 +126,7 @@ ModelImporter:
     7400000: Default Take
     9500000: //RootNode
     13700000: Cube
+    13700002: Plane_003
   materials:
     importMaterials: 1
     materialName: 0
