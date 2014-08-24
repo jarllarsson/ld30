@@ -13,7 +13,6 @@ GameObject:
   - 54: {fileID: 5400002}
   - 136: {fileID: 13600002}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400008}
   m_Layer: 9
   m_Name: NPC
   m_TagString: NPC
@@ -132,17 +131,6 @@ MonoBehaviour:
   m_wallCollPenalty: 1
   m_walkspeed: 40
   m_worshipper: {fileID: 11400000}
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c66d7d72c53f731428928bc882139690, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &13600002
 CapsuleCollider:
   m_ObjectHideFlags: 1

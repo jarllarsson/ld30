@@ -36,7 +36,7 @@ TextureImporter:
   alignment: 9
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: .400000006
+  spritePixelsToUnits: 10
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -45,22 +45,22 @@ TextureImporter:
     - name: boss_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 45
-        width: 44
+        x: 16
+        y: 44
+        width: 89
         height: 82
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_1
       rect:
         serializedVersion: 2
-        x: 52
-        y: 51
-        width: 57
-        height: 75
+        x: 123
+        y: 48
+        width: 114
+        height: 71
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_2
       rect:
@@ -70,17 +70,17 @@ TextureImporter:
         width: 11
         height: 11
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: boss_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 5
-        width: 17
+        x: 111
+        y: 6
+        width: 34
         height: 19
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
