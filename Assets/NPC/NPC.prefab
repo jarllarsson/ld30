@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -40,10 +41,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6d01055586e164a9af615ec4404fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_worshipPlate:
-    m_plateTransform: {fileID: 0}
-    m_worshipper: {fileID: 0}
   m_myHomeStone: {fileID: 0}
+  m_wayPointer: {fileID: 11400002}
+  m_searchTime: 5
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ab4728185743794589279feea3fe9b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -9,7 +9,7 @@ public class WorshipStone : MonoBehaviour
     {
         public Transform m_plateTransform;
         [HideInInspector]
-        public GameObject m_worshipper = null;
+        public Worshipper m_worshipper = null;
     }
 
     public WorshipPlate[] m_plates;
@@ -23,9 +23,15 @@ public class WorshipStone : MonoBehaviour
     public Transform m_bossPos;
 
     private LineRenderer m_energyLine;
+    public Light m_lamp;
     float intAnimTick = 0.0f;
 
     float m_lenToBoss;
+
+    public float getManaOutput()
+    {
+        return (float) m_plates.Length* m_percentageOutput;
+    }
 
 	// Use this for initialization
 	void Start () 
@@ -59,10 +65,12 @@ public class WorshipStone : MonoBehaviour
                     linPos += Vector3.up*(Mathf.Sin(t*Mathf.PI)*150.0f);
                     m_energyLine.SetPosition(i, linPos);
                 }
+                m_lamp.enabled = true;
             }
             else
             {
                 if (intAnimTick<1.0f) intAnimTick+=0.5f*Time.deltaTime;
+                m_lamp.intensity = intAnimTick;
                 m_energyLine.material.mainTextureScale = new Vector2(Mathf.Lerp(m_lenToBoss*0.2f,0.5f,intAnimTick),1.0f);
             }
         }
@@ -70,6 +78,7 @@ public class WorshipStone : MonoBehaviour
         {
             m_energyLine.SetVertexCount(0);
             m_energyLine.enabled=false;
+            m_lamp.enabled = false;
         }
         
         if (m_worshipPercentageFx)
@@ -83,7 +92,11 @@ public class WorshipStone : MonoBehaviour
         int count = 0;
         foreach (WorshipPlate plate in m_plates)
         {
-            if (plate.m_worshipper != null) count++;
+            if (plate.m_worshipper != null)
+            {
+                if (plate.m_worshipper.isWorshipping())
+                    count++;
+            }
         }
         return count;
     }
@@ -95,7 +108,7 @@ public class WorshipStone : MonoBehaviour
         {
             if (plate.m_worshipper == null)
             {
-                plate.m_worshipper=p_self.gameObject;
+                plate.m_worshipper=p_self;
                 p_self.setPlate(plate);
                 reVal = true;
                 break;

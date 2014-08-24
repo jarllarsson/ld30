@@ -17,9 +17,13 @@ public class Worshipper : MonoBehaviour
 	public PlateInfo m_plateInfo=null;
 
     public WorshipStone m_myHomeStone = null;
+    public WaypointWalker m_wayPointer;
 
     public float m_searchTime = 15.0f;
     private float m_searchTimeTick = 0.0f;
+
+    private WayPoint m_worshipTargetJob = null;
+    private bool m_isWorshipping = false;
 
 
 	// Use this for initialization
@@ -31,16 +35,31 @@ public class Worshipper : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        // Search for worship plates
         m_searchTimeTick += Time.deltaTime;
         if (m_searchTimeTick>=m_searchTime)
         {
             m_searchTimeTick = 0.0f;
             if (m_myHomeStone && !hasFoundFreeWorshipPlate())
             {
-                m_myHomeStone.registerWorshipper(this);
+                if (m_myHomeStone.registerWorshipper(this))
+                {
+                    WayPoint wp = new WayPoint(m_plateInfo.m_worshipPlate.m_plateTransform.position);
+                    m_worshipTargetJob = wp;
+                    m_wayPointer.m_waypoints.Push(wp);
+                }
             }
         }
 
+        // If we have a worship plate as target,
+        // see if we have reached it, and if so, set status to "worshipping"
+        // NOTE, might wanna change to some simple FSM here later.
+        if (m_worshipTargetJob!=null &&
+            m_worshipTargetJob.isClose(transform.position))
+        {
+            m_isWorshipping = true;
+            m_worshipTargetJob = null;
+        }
 
         if (m_myHomeStone && hasFoundFreeWorshipPlate())
         {
@@ -63,6 +82,11 @@ public class Worshipper : MonoBehaviour
     bool hasFoundFreeWorshipPlate()
     {
         return m_plateInfo != null;
+    }
+
+    public bool isWorshipping()
+    {
+        return m_isWorshipping;
     }
 
 	public void setPlate(WorshipStone.WorshipPlate p_plate)
