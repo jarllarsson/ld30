@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private float m_oldVelY;
     public float m_linDragJump = 10.0f;
     public float m_linDragWalk = 20.0f;
-    public Transform m_playerCharacterTransform;
+    public Animator m_playerCharacterAnimator;
     private float m_inAirBoost=0.0f;
     float m_horiz;
     float m_vert;
@@ -27,10 +27,15 @@ public class Player : MonoBehaviour
     private List<float> m_speeds = new List<float>();
     private Vector3 m_oldPos;
 
+    public Vector3 m_currentDir;
+    private int m_animMoveDirHash, m_animFacingDirHash;
+
 
 	// Use this for initialization
 	void Awake() 
     {
+        m_animMoveDirHash = Animator.StringToHash("move_dir");
+        m_animFacingDirHash = Animator.StringToHash("facing_dir");
         SetSpeedOfAllWalkAnims(1.2f);
         DeactivateAllWalkAnims();
         foreach (swing n in m_idleswings)
@@ -114,23 +119,38 @@ public class Player : MonoBehaviour
             ActivateAllWalkAnims();
             DeactivateAllIdleAnims();
 
-            if (m_playerCharacterTransform)
-                m_playerCharacterTransform.LookAt(m_playerCharacterTransform.position + combine);
-/*
-            if (m_horiz > 0.0f)
-                m_playerSprite.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            else
-                m_playerSprite.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
- * */
+            m_currentDir = combine;
+
+            //if (m_playerCharacterTransform)
+            //    m_playerCharacterTransform.LookAt(m_playerCharacterTransform.position + combine);
+
+            if (m_currentDir.x>0.0f) // right
+            {    m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 3);
+            m_playerCharacterAnimator.SetInteger(m_animFacingDirHash, 3);
+            }
+            else if (m_currentDir.x<0.0f) // left
+            {    m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 2);
+            m_playerCharacterAnimator.SetInteger(m_animFacingDirHash, 2);
+            }
+            else if (m_currentDir.z>0.0f) // up (backface)
+            {    m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 4);
+            m_playerCharacterAnimator.SetInteger(m_animFacingDirHash, 4);
+            }
+            else if (m_currentDir.z<0.0f) // down (frontface)
+            {    m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 1);
+            m_playerCharacterAnimator.SetInteger(m_animFacingDirHash, 1);
+            }
+
         }
         else
         {
+            m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 0);
             DeactivateAllWalkAnims();
             ActivateAllIdleAnims();
         }
 
         // THE JUMP CODEZ
-        if (m_jumpTrigger)
+        if (false && m_jumpTrigger) // no jumping
         {
             if (m_onGround && m_jumpToggle)
             {

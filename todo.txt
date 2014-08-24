@@ -1,9 +1,9 @@
- model protagonist
- code protagonist controller
+ * model protagonist
+ * code protagonist controller
  code animation on protagonist
  draw protagonist
  draw/model island stuff
- code totems (worship slots)
+ * code totems (worship slots)
  code boss energy system (totem energy gen)
  draw inhabitants
  code inhabitant worshipping code
