@@ -25,9 +25,7 @@ public class PlayerAttack : MonoBehaviour
             m_playerCharacterAnimator.SetBool(m_animAttackHash,true);
             m_isAttacking = true;
             m_canAttack = false;
-            int soundId = Random.Range(0, m_swordSfxs.Length);
-            Debug.Log(soundId);
-            m_swordSfxs[soundId].Play();
+
         }
         if (!m_attackBtn && !m_isAttacking)
         {
@@ -40,6 +38,22 @@ public class PlayerAttack : MonoBehaviour
     {
         m_isAttacking = false;
         m_playerCharacterAnimator.SetBool(m_animAttackHash, false);
+    }
+
+    public void attackSound()
+    {
+        int soundId = Random.Range(0, m_swordSfxs.Length);
+        //Debug.Log(soundId);
+        if (!m_swordSfxs[soundId].isPlaying)
+            m_swordSfxs[soundId].Play();
+        else
+        {
+            for (int x = 0; x < m_swordSfxs.Length; x++)
+            {
+                if (!m_swordSfxs[x].isPlaying) m_swordSfxs[x].Play();
+                break;
+            }
+        }
     }
 
 }

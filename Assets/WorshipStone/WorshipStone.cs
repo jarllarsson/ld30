@@ -24,7 +24,7 @@ public class WorshipStone : MonoBehaviour
 
     private LineRenderer m_energyLine;
     public Light m_lamp;
-    float intAnimTick = 0.0f;
+    float m_intAnimTick = 0.0f;
 
     float m_lenToBoss;
 
@@ -69,15 +69,17 @@ public class WorshipStone : MonoBehaviour
             }
             else
             {
-                if (intAnimTick<1.0f) intAnimTick+=0.5f*Time.deltaTime;
-                m_lamp.intensity = intAnimTick;
-                m_energyLine.material.mainTextureScale = new Vector2(Mathf.Lerp(m_lenToBoss*0.2f,0.5f,intAnimTick),1.0f);
+                if (m_intAnimTick<1.0f) m_intAnimTick+=0.5f*Time.deltaTime;
+                m_lamp.intensity = m_intAnimTick;
+                m_energyLine.material.mainTextureScale = new Vector2(Mathf.Lerp(m_lenToBoss*0.2f,0.5f,m_intAnimTick),1.0f);
             }
         }
         else
         {
             m_energyLine.SetVertexCount(0);
             m_energyLine.enabled=false;
+            m_energyLine.material.mainTextureScale = new Vector2(10000.0f, 1.0f);
+            m_intAnimTick = 0.0f;
             m_lamp.enabled = false;
         }
         

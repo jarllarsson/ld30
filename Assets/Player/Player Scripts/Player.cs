@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
                     if (look != new Quaternion(0.0f, 0.0f, 0.0f, 0.0f))
                     {
                         m_playerCharacterFacing.rotation = Quaternion.Slerp(m_playerCharacterFacing.rotation,
-                                            Quaternion.LookRotation(clampedFacing), Time.deltaTime * 0.25f);
+                                            Quaternion.LookRotation(clampedFacing), Time.deltaTime * 0.8f);
                     }
                 }
             }

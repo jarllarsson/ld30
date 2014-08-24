@@ -25,6 +25,9 @@ public class Worshipper : MonoBehaviour
     private WayPoint m_worshipTargetJob = null;
     private bool m_isWorshipping = false;
 
+    private float giveUpTime = 10.0f;
+    private float giveUpTick = 0.0f;
+
 
 	// Use this for initialization
 	void Start () 
@@ -36,17 +39,21 @@ public class Worshipper : MonoBehaviour
 	void Update () 
     {
         // Search for worship plates
-        m_searchTimeTick += Time.deltaTime;
-        if (m_searchTimeTick>=m_searchTime)
+        if (!hasFoundFreeWorshipPlate())
         {
-            m_searchTimeTick = 0.0f;
-            if (m_myHomeStone && !hasFoundFreeWorshipPlate())
+            m_searchTimeTick += Time.deltaTime;
+            if (m_searchTimeTick >= m_searchTime)
             {
-                if (m_myHomeStone.registerWorshipper(this))
+                m_searchTimeTick = 0.0f;
+                if (m_myHomeStone && !hasFoundFreeWorshipPlate())
                 {
-                    WayPoint wp = new WayPoint(m_plateInfo.m_worshipPlate.m_plateTransform.position);
-                    m_worshipTargetJob = wp;
-                    m_wayPointer.m_waypoints.Push(wp);
+                    if (m_myHomeStone.registerWorshipper(this))
+                    {
+                        WayPoint wp = new WayPoint(m_plateInfo.m_worshipPlate.m_plateTransform.position);
+                        m_worshipTargetJob = wp;
+                        m_wayPointer.m_waypoints.Push(wp);
+                        giveUpTick = giveUpTime;
+                    }
                 }
             }
         }
@@ -61,6 +68,17 @@ public class Worshipper : MonoBehaviour
             m_worshipTargetJob = null;
         }
 
+        if (isWorshipping())
+        {
+            updateWorshipStatus();
+        }
+
+        if (!isWorshipping() && hasFoundFreeWorshipPlate())
+        {
+            giveUpTick -= Time.deltaTime;
+            if (giveUpTick <= 0.0f) disableWorshipping();
+        }
+
         if (m_myHomeStone && hasFoundFreeWorshipPlate())
         {
             Debug.DrawLine(transform.position, m_myHomeStone.transform.position, Color.magenta);
@@ -70,12 +88,15 @@ public class Worshipper : MonoBehaviour
 
 	}
 
-    void die()
+    void disableWorshipping()
     {
         if (hasFoundFreeWorshipPlate())
         {
+            m_wayPointer.m_waypoints.Clear();
+            m_worshipTargetJob = null;
             m_plateInfo.m_worshipPlate.m_worshipper = null;
 			m_plateInfo=null;
+			m_isWorshipping = false;
         }
     }
 
@@ -86,7 +107,15 @@ public class Worshipper : MonoBehaviour
 
     public bool isWorshipping()
     {
-        return m_isWorshipping;
+        return m_isWorshipping && hasFoundFreeWorshipPlate();
+    }
+
+    void updateWorshipStatus()
+    {
+        if (!NPCCommon.TargetDistCheck(transform.position, m_plateInfo.m_worshipPlate.m_plateTransform.position))
+        {
+            disableWorshipping();
+        }
     }
 
 	public void setPlate(WorshipStone.WorshipPlate p_plate)
