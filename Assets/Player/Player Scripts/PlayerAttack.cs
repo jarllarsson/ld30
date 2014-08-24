@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Animator m_playerCharacterAnimator;
     private int m_animAttackHash;
-
+    public AudioSource[] m_swordSfxs;
 
     public bool m_attackBtn=false, m_isAttacking=false, m_canAttack=true;
 
@@ -25,6 +25,9 @@ public class PlayerAttack : MonoBehaviour
             m_playerCharacterAnimator.SetBool(m_animAttackHash,true);
             m_isAttacking = true;
             m_canAttack = false;
+            int soundId = Random.Range(0, m_swordSfxs.Length);
+            Debug.Log(soundId);
+            m_swordSfxs[soundId].Play();
         }
         if (!m_attackBtn && !m_isAttacking)
         {

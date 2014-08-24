@@ -18,17 +18,17 @@ AnimationClip:
         value: {x: -.353553951, y: -.6123721, z: .6123721, w: -.353553951}
         inSlope: {x: -.878682733, y: .674239218, z: -.674239218, w: -.878682733}
         outSlope: {x: -.878682733, y: .674239218, z: -.674239218, w: -.878682733}
-        tangentMode: 158150144
+        tangentMode: -1082966353
       - time: .166666672
         value: {x: -.500001073, y: -.499998897, z: .499998897, w: -.500001073}
         inSlope: {x: -.899182498, y: 1.02532232, z: -1.02532232, w: -.899182498}
         outSlope: {x: -.899182498, y: 1.02532232, z: -1.02532232, w: -.899182498}
-        tangentMode: 0
+        tangentMode: 1070213307
       - time: .333333343
         value: {x: -.65328145, y: -.270597994, z: .270597994, w: -.65328145}
         inSlope: {x: -.919682264, y: 1.37640536, z: -1.37640536, w: -.919682264}
         outSlope: {x: -.919682264, y: 1.37640536, z: -1.37640536, w: -.919682264}
-        tangentMode: 1093664768
+        tangentMode: 1935635045
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: player_sprites3_57L
@@ -46,12 +46,12 @@ AnimationClip:
         value: {x: -.125402093, y: -.950175226, z: 0}
         inSlope: {x: 3.9035666, y: .38221854, z: 0}
         outSlope: {x: 3.9035666, y: .38221854, z: 0}
-        tangentMode: 149914348
+        tangentMode: 147815312
       - time: .333333343
         value: {x: .549302042, y: -.686947227, z: 0}
         inSlope: {x: 4.04822445, y: 1.579368, z: 0}
         outSlope: {x: 4.04822445, y: 1.579368, z: 0}
-        tangentMode: 15
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: player_sprites3_57L
@@ -70,6 +70,20 @@ AnimationClip:
     attribute: m_Enabled
     path: player_sprites3_57L
     classID: 212
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: DownAttack
+    classID: 65
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
@@ -106,6 +120,12 @@ AnimationClip:
       attribute: 3305885265
       script: {fileID: 0}
       classID: 212
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2075371334
+      attribute: 3305885265
+      script: {fileID: 0}
+      classID: 65
       customType: 0
       isPPtrCurve: 0
     - path: 0
@@ -317,6 +337,20 @@ AnimationClip:
     attribute: m_LocalPosition.x
     path: player_sprites3_57L
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: DownAttack
+    classID: 65
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:

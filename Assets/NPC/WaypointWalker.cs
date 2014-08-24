@@ -8,6 +8,7 @@ public class WaypointWalker : MonoBehaviour
 
     public Stack<WayPoint> m_waypoints = new Stack<WayPoint>();
     private WayPoint m_current;
+    private Vector3 m_desiredHeading;
 
 	// Use this for initialization
 	void Start () 
@@ -24,7 +25,7 @@ public class WaypointWalker : MonoBehaviour
                 m_current = null;
             else
             {
-                transform.position += Vector3.Normalize(m_current.m_pos - transform.position) * Time.deltaTime;
+                m_desiredHeading += Vector3.Normalize(m_current.m_pos - transform.position) * Time.deltaTime;
             }
         }
         else if (m_waypoints.Count>0)
@@ -33,6 +34,11 @@ public class WaypointWalker : MonoBehaviour
         }
         debugDraw();
 	}
+
+    public Vector3 GetCurrentHeading()
+    {
+        return m_desiredHeading;
+    }
 
     void debugDraw()
     {

@@ -29,7 +29,10 @@ public class Player : MonoBehaviour
     private Vector3 m_oldPos;
 
     public Vector3 m_currentDir;
+    public Vector3 m_currentRealDir;
     private int m_animMoveDirHash, m_animFacingDirHash;
+
+    public bool m_autoCam = false;
 
     private Quaternion m_recentFacing;
 
@@ -117,21 +120,19 @@ public class Player : MonoBehaviour
         rigidbody.AddForce((m_recentFacing*combine) * m_inAirBoost * m_walkspeed/* * m_wallCollPenalty*/);
         //Debug.DrawLine(transform.position, transform.position + combine, new Color(combine.x,.5f,combine.z), 1.0f);
 
-        if (Mathf.Abs(m_horiz) > 0.1f || Mathf.Abs(m_vert) > 0.1f)
+
+
+        if (Mathf.Abs(m_horiz) > 0.00001f || Mathf.Abs(m_vert) > 0.00001f)
         {
             ActivateAllWalkAnims();
             DeactivateAllIdleAnims();
 
-            /*
-            if (m_playerCharacterFacing)
-            {
-                Vector3 clampedFacing = Vector3.Normalize(new Vector3(combine.x,0.0f,Mathf.Clamp(combine.z,0.0f,1.0f)));
-
-                m_playerCharacterFacing.LookAt(m_playerCharacterFacing.position + clampedFacing);
-            }
-            */
-
+           
+            
+//             Vector3 camRot = Camera.main.transform.rotation.eulerAngles;
+//             Quaternion currentFacing = Quaternion.Euler(0.0f, camRot.y, 0.0f);
             m_currentDir = combine/* - (Camera.main.transform.right - Camera.main.transform.forward)*/;
+            m_currentRealDir = (m_recentFacing * Vector3.Normalize(combine));
             if (m_currentDir.x>0.0f) // right
             {    m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 3);
             m_playerCharacterAnimator.SetInteger(m_animFacingDirHash, 3);
@@ -155,6 +156,35 @@ public class Player : MonoBehaviour
             Vector3 camRot = Camera.main.transform.rotation.eulerAngles;
             m_recentFacing = Quaternion.Euler(0.0f,camRot.y,0.0f);
             m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 0);
+
+            bool fixCamBehind = m_autoCam || Input.GetAxis("Jump")>0.0f;
+            if (m_playerCharacterFacing && fixCamBehind)
+            {
+                Vector3 noBackwards = m_currentRealDir;
+                bool isOk=true;
+                if (m_currentRealDir.z <= 0.0f)
+                {
+                    isOk = false;
+                    if (Mathf.Abs(m_currentRealDir.x) > 0.5f)
+                    {
+                        noBackwards = new Vector3(m_currentRealDir.x, m_currentRealDir.y, Mathf.Clamp(m_currentRealDir.z, 0.0f, 1.0f));
+                        isOk = true;
+                    }
+                }
+                //
+                if (isOk)
+                {
+                    Vector3 clampedFacing = Vector3.Normalize(noBackwards);
+                    Quaternion look = Quaternion.LookRotation(clampedFacing);
+                    if (look != new Quaternion(0.0f, 0.0f, 0.0f, 0.0f))
+                    {
+                        m_playerCharacterFacing.rotation = Quaternion.Slerp(m_playerCharacterFacing.rotation,
+                                            Quaternion.LookRotation(clampedFacing), Time.deltaTime * 0.25f);
+                    }
+                }
+            }
+
+
             DeactivateAllWalkAnims();
             ActivateAllIdleAnims();
         }
