@@ -9,23 +9,35 @@ public class WaypointWalker : MonoBehaviour
     public Stack<WayPoint> m_waypoints = new Stack<WayPoint>();
     private WayPoint m_current;
     private Vector3 m_desiredHeading;
+    private float m_withinRangeTimeBeforeAccept = 2.0f;
+    private float m_withinRangeTimeBeforeAcceptTick = 0.0f;
 
 	// Use this for initialization
 	void Start () 
     {
-	
+        m_withinRangeTimeBeforeAcceptTick = m_withinRangeTimeBeforeAccept;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
+        m_desiredHeading = Vector3.zero;
 	    if (m_current!=null)
         {
+            Vector3 planeMovement = new Vector3(m_current.m_pos.x - transform.position.x, 0.0f, m_current.m_pos.z - transform.position.z);
+            m_desiredHeading = Vector3.ClampMagnitude(planeMovement,1.0f);
             if (m_current.isClose(transform.position))
-                m_current = null;
+            {
+                m_withinRangeTimeBeforeAcceptTick -= Time.deltaTime;
+                if (m_withinRangeTimeBeforeAcceptTick<=0.0f)
+                {
+                    m_current = null;
+                    m_withinRangeTimeBeforeAcceptTick = m_withinRangeTimeBeforeAccept;
+                }
+            }
             else
             {
-                m_desiredHeading += Vector3.Normalize(m_current.m_pos - transform.position) * Time.deltaTime;
+                m_withinRangeTimeBeforeAcceptTick = m_withinRangeTimeBeforeAccept;
             }
         }
         else if (m_waypoints.Count>0)
