@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float m_linDragJump = 10.0f;
     public float m_linDragWalk = 20.0f;
     public Animator m_playerCharacterAnimator;
+    public Transform m_playerCharacterFacing;
     private float m_inAirBoost=0.0f;
     float m_horiz;
     float m_vert;
@@ -30,10 +31,12 @@ public class Player : MonoBehaviour
     public Vector3 m_currentDir;
     private int m_animMoveDirHash, m_animFacingDirHash;
 
+    private Quaternion m_recentFacing;
 
 	// Use this for initialization
 	void Awake() 
     {
+        m_recentFacing = Quaternion.identity;
         m_animMoveDirHash = Animator.StringToHash("move_dir");
         m_animFacingDirHash = Animator.StringToHash("facing_dir");
         SetSpeedOfAllWalkAnims(1.2f);
@@ -110,8 +113,8 @@ public class Player : MonoBehaviour
             rigidbody.drag = m_linDragJump;
             m_inAirBoost = 1.0f / m_linDragWalk;
         }
-        Vector3 combine = Vector3.ClampMagnitude(Vector3.right * m_horiz + Vector3.forward * m_vert,1.0f);
-        rigidbody.AddForce(combine * m_inAirBoost * m_walkspeed/* * m_wallCollPenalty*/);
+        Vector3 combine = Vector3.ClampMagnitude(Vector3.right * m_horiz + Vector3.forward * m_vert, 1.0f);
+        rigidbody.AddForce((m_recentFacing*combine) * m_inAirBoost * m_walkspeed/* * m_wallCollPenalty*/);
         //Debug.DrawLine(transform.position, transform.position + combine, new Color(combine.x,.5f,combine.z), 1.0f);
 
         if (Mathf.Abs(m_horiz) > 0.1f || Mathf.Abs(m_vert) > 0.1f)
@@ -119,11 +122,16 @@ public class Player : MonoBehaviour
             ActivateAllWalkAnims();
             DeactivateAllIdleAnims();
 
-            m_currentDir = combine;
+            /*
+            if (m_playerCharacterFacing)
+            {
+                Vector3 clampedFacing = Vector3.Normalize(new Vector3(combine.x,0.0f,Mathf.Clamp(combine.z,0.0f,1.0f)));
 
-            //if (m_playerCharacterTransform)
-            //    m_playerCharacterTransform.LookAt(m_playerCharacterTransform.position + combine);
+                m_playerCharacterFacing.LookAt(m_playerCharacterFacing.position + clampedFacing);
+            }
+            */
 
+            m_currentDir = combine/* - (Camera.main.transform.right - Camera.main.transform.forward)*/;
             if (m_currentDir.x>0.0f) // right
             {    m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 3);
             m_playerCharacterAnimator.SetInteger(m_animFacingDirHash, 3);
@@ -144,6 +152,8 @@ public class Player : MonoBehaviour
         }
         else
         {
+            Vector3 camRot = Camera.main.transform.rotation.eulerAngles;
+            m_recentFacing = Quaternion.Euler(0.0f,camRot.y,0.0f);
             m_playerCharacterAnimator.SetInteger(m_animMoveDirHash, 0);
             DeactivateAllWalkAnims();
             ActivateAllIdleAnims();
