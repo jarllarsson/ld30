@@ -74,7 +74,7 @@ GameObject:
   - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
   - 54: {fileID: 5400002}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: DownAttack
   m_TagString: swordAttack
@@ -160,6 +161,7 @@ GameObject:
   - 65: {fileID: 6500002}
   - 23: {fileID: 2300002}
   - 54: {fileID: 5400004}
+  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: LeftAttack
   m_TagString: swordAttack
@@ -179,6 +181,7 @@ GameObject:
   - 65: {fileID: 6500004}
   - 23: {fileID: 2300004}
   - 54: {fileID: 5400006}
+  - 114: {fileID: 11400010}
   m_Layer: 0
   m_Name: RightAttack
   m_TagString: swordAttack
@@ -198,6 +201,7 @@ GameObject:
   - 65: {fileID: 6500006}
   - 23: {fileID: 2300006}
   - 54: {fileID: 5400008}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: FrontAttack
   m_TagString: swordAttack
@@ -923,6 +927,50 @@ MonoBehaviour:
   m_attackBtn: 0
   m_isAttacking: 0
   m_canAttack: 1
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fee304969bcfda47973ab43c5c9f060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fee304969bcfda47973ab43c5c9f060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fee304969bcfda47973ab43c5c9f060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fee304969bcfda47973ab43c5c9f060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -956,7 +1004,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 230195607
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300114, guid: cb209c5434d6bf94795425a972701d1c, type: 3}
+  m_Sprite: {fileID: 21300134, guid: cb209c5434d6bf94795425a972701d1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200002
 SpriteRenderer:
@@ -978,7 +1026,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 230195607
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300114, guid: cb209c5434d6bf94795425a972701d1c, type: 3}
+  m_Sprite: {fileID: 21300134, guid: cb209c5434d6bf94795425a972701d1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200004
 SpriteRenderer:
