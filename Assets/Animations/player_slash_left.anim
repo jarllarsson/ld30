@@ -18,12 +18,12 @@ AnimationClip:
         value: {x: -.270597845, y: .65328151, z: -.65328151, w: -.270597845}
         inSlope: {x: 2.43538237, y: -5.36441803e-07, z: 5.36441803e-07, w: 2.43538237}
         outSlope: {x: 2.43538237, y: -5.36441803e-07, z: 5.36441803e-07, w: 2.43538237}
-        tangentMode: -1111135280
+        tangentMode: 0
       - time: .222222224
         value: {x: .270598263, y: .653281391, z: -.653281391, w: .270598263}
         inSlope: {x: 2.43538237, y: -5.36441803e-07, z: 5.36441803e-07, w: 2.43538237}
         outSlope: {x: 2.43538237, y: -5.36441803e-07, z: 5.36441803e-07, w: 2.43538237}
-        tangentMode: 0
+        tangentMode: 4
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: player_sprites3_57L
@@ -36,17 +36,17 @@ AnimationClip:
         value: {x: -.631828785, y: -.0963970423, z: -.778502464}
         inSlope: {x: -3.70299768, y: 0, z: 0}
         outSlope: {x: -3.70299768, y: 0, z: 0}
-        tangentMode: -1257242624
+        tangentMode: -6765552
       - time: .111111112
         value: {x: -1.04327297, y: -.0963970423, z: -.778502464}
         inSlope: {x: -.301878929, y: 0, z: -1.33960676}
         outSlope: {x: -.301878929, y: 0, z: -1.33960676}
-        tangentMode: 890241024
+        tangentMode: 0
       - time: .222222224
         value: {x: -.698912978, y: -.0963970423, z: -1.07619286}
         inSlope: {x: 3.09923983, y: 0, z: -2.67921352}
         outSlope: {x: 3.09923983, y: 0, z: -2.67921352}
-        tangentMode: 0
+        tangentMode: 153382952
       m_PreInfinity: 2
       m_PostInfinity: 2
     path: player_sprites3_57L
@@ -77,8 +77,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
     attribute: m_Enabled
-    path: player_sprites3_57L
-    classID: 212
+    path: player_sprites3_57L/player_sprites3_57L_3D
+    classID: 23
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
@@ -117,10 +117,10 @@ AnimationClip:
       classID: 65
       customType: 0
       isPPtrCurve: 0
-    - path: 2422350321
+    - path: 769991036
       attribute: 3305885265
       script: {fileID: 0}
-      classID: 212
+      classID: 23
       customType: 0
       isPPtrCurve: 0
     - path: 0
@@ -241,20 +241,6 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 31
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-    attribute: m_Enabled
-    path: player_sprites3_57L
-    classID: 212
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - time: 0
         value: -.270597845
         inSlope: 2.43538237
         outSlope: 2.43538237
@@ -326,6 +312,20 @@ AnimationClip:
     attribute: m_LocalRotation.w
     path: player_sprites3_57L
     classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+    attribute: m_Enabled
+    path: player_sprites3_57L/player_sprites3_57L_3D
+    classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves:
   - curve:
