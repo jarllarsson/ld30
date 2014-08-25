@@ -39,7 +39,7 @@ public class Worshipper : MonoBehaviour
 	void Update () 
     {
         // Search for worship plates
-        if (!hasFoundFreeWorshipPlate())
+        if (!hasFoundFreeWorshipPlate() && m_worshipTargetJob==null)
         {
             m_searchTimeTick += Time.deltaTime;
             if (m_searchTimeTick >= m_searchTime)
@@ -88,11 +88,11 @@ public class Worshipper : MonoBehaviour
 
 	}
 
-    void disableWorshipping()
+    public void disableWorshipping()
     {
         if (hasFoundFreeWorshipPlate())
         {
-            m_wayPointer.m_waypoints.Clear();
+            m_wayPointer.clear();
             m_worshipTargetJob = null;
             m_plateInfo.m_worshipPlate.m_worshipper = null;
 			m_plateInfo=null;

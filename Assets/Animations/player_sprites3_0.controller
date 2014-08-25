@@ -275,6 +275,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110213133
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: player_die
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 7cd07337d83b6f94eb68e28da5c192ad, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: 395, y: 413, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110217092
 State:
   m_ObjectHideFlags: 3
@@ -429,36 +444,10 @@ StateMachine:
   - {fileID: 110262807}
   - {fileID: 110219039}
   - {fileID: 110254936}
+  - {fileID: 110213133}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
-    data:
-      first: {fileID: 110254936}
-      second: []
-    data:
-      first: {fileID: 110219039}
-      second: []
-    data:
-      first: {fileID: 110262807}
-      second: []
-    data:
-      first: {fileID: 110297595}
-      second: []
-    data:
-      first: {fileID: 110259126}
-      second: []
-    data:
-      first: {fileID: 110217092}
-      second: []
-    data:
-      first: {fileID: 110219525}
-      second: []
-    data:
-      first: {fileID: 110249442}
-      second: []
-    data:
-      first: {fileID: 110264845}
-      second: []
     data:
       first: {fileID: 0}
       second:
@@ -472,7 +461,34 @@ StateMachine:
       - {fileID: 110175845}
       - {fileID: 110138840}
     data:
+      first: {fileID: 110259126}
+      second: []
+    data:
+      first: {fileID: 110219525}
+      second: []
+    data:
+      first: {fileID: 110219039}
+      second: []
+    data:
       first: {fileID: 110200000}
+      second: []
+    data:
+      first: {fileID: 110264845}
+      second: []
+    data:
+      first: {fileID: 110249442}
+      second: []
+    data:
+      first: {fileID: 110217092}
+      second: []
+    data:
+      first: {fileID: 110297595}
+      second: []
+    data:
+      first: {fileID: 110262807}
+      second: []
+    data:
+      first: {fileID: 110254936}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 0, y: -24, z: 0}

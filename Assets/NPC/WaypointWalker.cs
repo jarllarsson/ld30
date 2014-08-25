@@ -12,6 +12,12 @@ public class WaypointWalker : MonoBehaviour
     private float m_withinRangeTimeBeforeAccept = 2.0f;
     private float m_withinRangeTimeBeforeAcceptTick = 0.0f;
 
+    public void clear()
+    {
+        m_current=null;
+        m_waypoints.Clear();
+    }
+
 	// Use this for initialization
 	void Start () 
     {

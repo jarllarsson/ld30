@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 
 
 
-        if (Mathf.Abs(m_horiz) > 0.00001f || Mathf.Abs(m_vert) > 0.00001f)
+        if (Mathf.Abs(m_horiz) > 0.001f || Mathf.Abs(m_vert) > 0.001f)
         {
             ActivateAllWalkAnims();
             DeactivateAllIdleAnims();

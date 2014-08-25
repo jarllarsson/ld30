@@ -30,6 +30,8 @@ GameObject:
   - 4: {fileID: 400002}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400004}
+  - 95: {fileID: 9500000}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -44,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.901829, y: .974953651, z: -.694782257}
+  m_LocalPosition: {x: -6.33106995, y: .974953651, z: -3.34412003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -77,6 +79,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &9500000
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2cce919654d08c340a18ac09858c2b2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,6 +148,21 @@ MonoBehaviour:
   m_wallCollPenalty: 1
   m_walkspeed: 40
   m_worshipper: {fileID: 11400000}
+  m_playerCharacterAnimator: {fileID: 9500000}
+  m_angry: 0
+  m_currentDir: {x: 0, y: 0, z: 0}
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adcaef483c66c434c835952542e52d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_npc: {fileID: 11400006}
 --- !u!136 &13600002
 CapsuleCollider:
   m_ObjectHideFlags: 1
