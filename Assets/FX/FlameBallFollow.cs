@@ -23,13 +23,13 @@ public class FlameBallFollow : MonoBehaviour {
     {
         Vector3 dir = m_player.transform.position + Vector3.up*0.8f - transform.position;
         Quaternion goal = Quaternion.LookRotation(dir);
-        if (dir.magnitude>10.0f)
+        if (dir.magnitude>20.0f)
         {
             Vector3 ddir = transform.forward; 
-            ddir = new Vector3(ddir.x, ddir.y * 0.5f, ddir.z);
-            transform.position += ddir * m_speed * Time.deltaTime;
+            ddir = new Vector3(ddir.x, ddir.y * 0.8f, ddir.z);
+            transform.position += (ddir - new Vector3(Mathf.Sin(Time.time), Mathf.Cos(Time.time), 0.0f)*0.2f) * m_speed  * Time.deltaTime;
             transform.rotation = goal;
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(goalSize,goalSize,goalSize), 0.5f*Time.deltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(goalSize,goalSize,goalSize), 0.1f*Time.deltaTime);
         }
         else
         {
