@@ -8314,7 +8314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cooldown: 10
   m_cooldownTick: 0
-  m_subcooldown: 3
+  m_subcooldown: 2
   m_subcooldownTick: 0
   m_fireball: {fileID: 400004, guid: 15fcd2be067c0784192b32e27037bb78, type: 2}
   m_spawnPoint: {fileID: 445151471}
@@ -9090,7 +9090,7 @@ Prefab:
       objectReference: {fileID: 445151471}
     - target: {fileID: 11400002, guid: 092eeca2b0004f6499beafebc9352cdd, type: 2}
       propertyPath: m_subcooldown
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 092eeca2b0004f6499beafebc9352cdd, type: 2}
       propertyPath: m_cooldown

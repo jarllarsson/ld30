@@ -25,6 +25,7 @@ public class WorshipStone : MonoBehaviour
     private LineRenderer m_energyLine;
     public Light m_lamp;
     float m_intAnimTick = 0.0f;
+    private bossFireballSpawner m_bossManaRecepticle;
 
     float m_lenToBoss;
 
@@ -36,6 +37,8 @@ public class WorshipStone : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        GameObject bossObj = GameObject.FindGameObjectWithTag("Boss");
+        if (bossObj) m_bossManaRecepticle = bossObj.GetComponent<bossFireballSpawner>();
         if (m_energyLine == null)
             m_energyLine = transform.GetComponentInChildren<LineRenderer>();
 
@@ -46,6 +49,7 @@ public class WorshipStone : MonoBehaviour
 	void Update () 
     {
         int activeWorshippers = calcWorshippers();
+        m_bossManaRecepticle.addMana(activeWorshippers);
         if (m_plates.Length>0)
             m_percentageOutput = (float)activeWorshippers / (float)m_plates.Length;
 
