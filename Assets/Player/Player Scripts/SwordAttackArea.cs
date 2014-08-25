@@ -30,6 +30,11 @@ public class SwordAttackArea : MonoBehaviour
         {
             OnNPCCollide(p_coll);
         }
+        else if (p_coll.gameObject.tag == "Grass")
+        {
+            GrasCut grasscut = p_coll.gameObject.GetComponent<GrasCut>();
+            if (grasscut) grasscut.cut();
+        }
     }
 
     void OnNPCCollide(Collider p_coll)

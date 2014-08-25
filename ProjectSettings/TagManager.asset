@@ -5,6 +5,7 @@ TagManager:
   tags:
   - swordAttack
   - NPC
+  - Grass
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
