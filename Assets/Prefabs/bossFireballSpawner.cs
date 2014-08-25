@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class bossFireballSpawner : MonoBehaviour 
 {
@@ -13,11 +14,13 @@ public class bossFireballSpawner : MonoBehaviour
 
     public Transform m_fireball;
     public Transform m_spawnPoint;
+    public Text m_text;
 
 	// Use this for initialization
 	void Start () {
         m_cooldownTick = m_cooldown;
         m_manaUse = m_mana;
+        m_text.text = "x " + m_mana;
 	}
 	
 	// Update is called once per frame
@@ -46,4 +49,16 @@ public class bossFireballSpawner : MonoBehaviour
             m_cooldownTick -= Time.deltaTime;
         }
 	}
+
+    public void addMana()
+    {
+        m_mana++;
+        m_text.text = "x "+m_mana;
+    }
+
+    public void removeMana()
+    {
+        m_mana--;
+        m_text.text = "x "+m_mana;
+    }
 }
