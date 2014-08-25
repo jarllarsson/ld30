@@ -16,10 +16,15 @@ public class HealthBar : MonoBehaviour {
 
     public bool hurtTrig=false;
     private bool m_latestHIndexVisibleEndstate;
+    public Animator m_playerCharacterAnimator;
+    public Player m_playerScript;
+    public PlayerAttack m_playerAtkScript;
+    private int m_animDieHash;
 
 	// Use this for initialization
 	void Start () 
     {
+        m_animDieHash = Animator.StringToHash("die");
         m_heartsPtHp = new int[m_hearts.Length];
 	    for (int i=0;i<m_hearts.Length;i++)
         {
@@ -66,7 +71,7 @@ public class HealthBar : MonoBehaviour {
         {
             m_hurtTick -= Time.deltaTime;
             bool blink = ((int)(m_hurtTick * 100)) % 21 < 10;
-            Debug.Log(blink);
+            //Debug.Log(blink);
             m_heartsH[m_latestHIndex].SetActive(blink);
             if (blink)
                 m_playerSprite.color = Color.white;
@@ -78,6 +83,13 @@ public class HealthBar : MonoBehaviour {
                 m_playerSprite.color = Color.white;
                 m_heartsH[m_latestHIndex].SetActive(m_latestHIndexVisibleEndstate);
             }
+        }
+
+        if (isDead())
+        {
+            m_playerScript.enabled = false;
+            m_playerAtkScript.enabled = false;
+            m_playerCharacterAnimator.SetBool(m_animDieHash, true);
         }
 	}
 

@@ -36,6 +36,8 @@ TextureImporter:
     21300062: ground_31
     21300064: ground_32
     21300066: ground_33
+    21300068: ground_34
+    21300070: ground_35
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -414,6 +416,26 @@ TextureImporter:
         y: 344
         width: 30
         height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ground_34
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 317
+        width: 18
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ground_35
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 341
+        width: 18
+        height: 17
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

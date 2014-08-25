@@ -39,6 +39,8 @@ public class WorshipStone : MonoBehaviour
     {
         GameObject bossObj = GameObject.FindGameObjectWithTag("Boss");
         if (bossObj) m_bossManaRecepticle = bossObj.GetComponent<bossFireballSpawner>();
+        GameObject bossEyeObj = GameObject.FindGameObjectWithTag("BossEye");
+        m_bossPos = bossEyeObj.transform;
         if (m_energyLine == null)
             m_energyLine = transform.GetComponentInChildren<LineRenderer>();
 

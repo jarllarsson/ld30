@@ -13,6 +13,7 @@ public class bossFireballSpawner : MonoBehaviour
     public float m_subcooldownTick=0.0f;
 
     public Transform m_fireball;
+    public Transform m_bossHead;
     public Transform m_spawnPoint;
     public Text m_text;
 
@@ -26,6 +27,8 @@ public class bossFireballSpawner : MonoBehaviour
 	// Update is called once per frame
 	void LateUpdate () 
     {
+        float manascale = Mathf.Min(((float)(m_mana+1)*0.2f+0.25f),2.0f);
+        m_bossHead.localScale = Vector3.Lerp(m_bossHead.localScale,new Vector3(manascale, manascale, manascale),Time.deltaTime);
         m_text.text = "x " + m_mana;
 	    if (m_cooldownTick<=0.0f)
         {

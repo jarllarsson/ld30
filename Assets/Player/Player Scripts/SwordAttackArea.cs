@@ -39,6 +39,10 @@ public class SwordAttackArea : MonoBehaviour
 
     void OnNPCCollide(Collider p_coll)
     {
-        Destroy(p_coll.gameObject);
+        NPCBrain brain = p_coll.GetComponent<NPCBrain>();
+        brain.setHurt();
+        Vector3 fVec = Vector3.Normalize(p_coll.transform.position-transform.parent.position);
+        fVec = new Vector3(fVec.x,0.0f,fVec.z);
+        p_coll.gameObject.rigidbody.AddForce(fVec * 100.0f);
     }
 }

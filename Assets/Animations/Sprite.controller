@@ -330,6 +330,14 @@ Transition:
     m_ConditionEvent: npc_hurt
     m_EventTreshold: 0
     m_ExitTime: .899999976
+  - m_ConditionMode: 2
+    m_ConditionEvent: npc_isAngry
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  - m_ConditionMode: 2
+    m_ConditionEvent: npc_atk
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -539,33 +547,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110236715}
-      second: []
-    data:
-      first: {fileID: 110224743}
-      second: []
-    data:
-      first: {fileID: 110278061}
-      second: []
-    data:
-      first: {fileID: 110287319}
-      second: []
-    data:
-      first: {fileID: 110204199}
-      second: []
-    data:
-      first: {fileID: 110207104}
-      second: []
-    data:
-      first: {fileID: 110219546}
-      second: []
-    data:
-      first: {fileID: 110228146}
-      second: []
-    data:
-      first: {fileID: 110200000}
-      second: []
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110100000}
@@ -578,6 +559,33 @@ StateMachine:
       - {fileID: 110124362}
       - {fileID: 110191485}
       - {fileID: 110119165}
+    data:
+      first: {fileID: 110200000}
+      second: []
+    data:
+      first: {fileID: 110228146}
+      second: []
+    data:
+      first: {fileID: 110219546}
+      second: []
+    data:
+      first: {fileID: 110207104}
+      second: []
+    data:
+      first: {fileID: 110204199}
+      second: []
+    data:
+      first: {fileID: 110287319}
+      second: []
+    data:
+      first: {fileID: 110278061}
+      second: []
+    data:
+      first: {fileID: 110224743}
+      second: []
+    data:
+      first: {fileID: 110236715}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 48, y: 24, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

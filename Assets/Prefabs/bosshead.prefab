@@ -92,7 +92,7 @@ GameObject:
   - 23: {fileID: 2300000}
   m_Layer: 0
   m_Name: boss_2_3D
-  m_TagString: Untagged
+  m_TagString: BossEye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 154.157471, z: 379.38031}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children:
   - {fileID: 400000}
   - {fileID: 400004}
@@ -396,10 +396,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cooldown: 10
   m_cooldownTick: 0
-  m_subcooldown: 1
+  m_subcooldown: 2
   m_subcooldownTick: 0
-  m_fireball: {fileID: 0}
-  m_spawnPoint: {fileID: 0}
+  m_fireball: {fileID: 400004, guid: 15fcd2be067c0784192b32e27037bb78, type: 2}
+  m_bossHead: {fileID: 400002}
+  m_spawnPoint: {fileID: 400010}
+  m_text: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

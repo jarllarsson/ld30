@@ -23,7 +23,8 @@ public class NPCBrain : MonoBehaviour
     private Vector3 m_oldPos;
     private float m_standingStillCounter = 0.0f;
 
-    private int m_animFacingDirHash,m_animTriggerAttackHash, m_animIsAngryHash, m_animIsWorshippingHash;
+    private int m_animFacingDirHash,m_animTriggerAttackHash, m_animIsAngryHash, m_animIsWorshippingHash,
+        m_animHurtHash;
 
     private bool m_angry = false;
     private float m_angryTime = 3.0f;
@@ -32,6 +33,13 @@ public class NPCBrain : MonoBehaviour
 
     public bool triggerAngry = false;
     private Transform m_player;
+    public Transform m_dieFx;
+
+    private int m_health = 5;
+
+    private bool m_isHurt;
+
+
 
     private bool m_atkState;
 
@@ -41,6 +49,7 @@ public class NPCBrain : MonoBehaviour
         m_animTriggerAttackHash = Animator.StringToHash("npc_atk");
         m_animIsAngryHash = Animator.StringToHash("npc_isAngry");
         m_animIsWorshippingHash = Animator.StringToHash("npc_isWorshipping");
+        m_animHurtHash = Animator.StringToHash("npc_hurt");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player) m_player = player.transform;
 	}
@@ -50,6 +59,11 @@ public class NPCBrain : MonoBehaviour
         countStandingStillTime();
         if (triggerAngry)
             makeAngry();
+
+        if (m_health<=0)
+        {
+            die();
+        }
     }
 
 	// Update is called once per frame
@@ -139,16 +153,16 @@ public class NPCBrain : MonoBehaviour
         {
             m_angryTick -= Time.deltaTime;
 
-            if (Random.Range(0,1000)>990)
+            if (Random.Range(0,1000)>990 ||
+                (Vector3.SqrMagnitude(m_player.position - transform.position) < 4.0f 
+                && Random.Range(0, 100) > 80))
             {
                 attack();
             }
 
             if (m_angryTick<=0.0f)
             {
-                m_angry = false;
-                setAtkState(false);
-                m_playerCharacterAnimator.SetBool(m_animIsAngryHash, false);
+                makeHappy();
             }
         }
         m_oldPos = transform.position;
@@ -171,6 +185,13 @@ public class NPCBrain : MonoBehaviour
         m_playerCharacterAnimator.SetBool(m_animIsAngryHash, true);
     }
 
+    public void makeHappy()
+    {
+        m_angry = false;
+        setAtkState(false);
+        m_playerCharacterAnimator.SetBool(m_animIsAngryHash, false);
+    }
+
     public void setAtkState(bool p_state)
     {
         m_atkState = p_state;
@@ -180,5 +201,30 @@ public class NPCBrain : MonoBehaviour
     void attack()
     {
         if (!m_atkState) setAtkState(true);
+    }
+
+    public void setHurt()
+    {
+        if (!m_isHurt && !m_atkState)
+        {
+            makeHappy();
+            m_health--;
+            m_isHurt = true;
+            m_playerCharacterAnimator.SetBool(m_animHurtHash, true);
+        }
+    }
+
+    public void setUnhurt()
+    {
+        m_isHurt = false;
+        m_playerCharacterAnimator.SetBool(m_animHurtHash, false);
+        makeAngry();
+
+    }
+
+    void die()
+    {
+        Instantiate(m_dieFx, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
