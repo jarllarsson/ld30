@@ -56,7 +56,7 @@ public class WorshipStone : MonoBehaviour
             {
                 float lenToBoss = Vector3.Magnitude(m_bossPos.position - transform.position);
                 m_energyLine.enabled = true;
-                int vcount = (int)(m_lenToBoss * 0.01f);
+                int vcount = (int)(m_lenToBoss * 0.1f);
                 m_energyLine.SetVertexCount(vcount);
                 for (int i=0;i<vcount;i++)
                 {
