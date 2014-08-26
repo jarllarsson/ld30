@@ -17,6 +17,8 @@ public class bossFireballSpawner : MonoBehaviour
     public Transform m_spawnPoint;
     public Text m_text;
 
+    public Collider m_playerHindrance;
+
 	// Use this for initialization
 	void Start () {
         m_cooldownTick = m_cooldown;
@@ -27,9 +29,23 @@ public class bossFireballSpawner : MonoBehaviour
 	// Update is called once per frame
 	void LateUpdate () 
     {
-        float manascale = Mathf.Min(((float)(m_mana+1)*0.2f+0.25f),2.0f);
+        float manascale = Mathf.Min(((float)(m_mana+1)*0.1f+0.25f),1.011f);
         m_bossHead.localScale = Vector3.Lerp(m_bossHead.localScale,new Vector3(manascale, manascale, manascale),Time.deltaTime);
         m_text.text = "x " + m_mana;
+
+        if (m_mana <= 0)
+        {
+            m_playerHindrance.enabled = false;
+            m_playerHindrance.transform.localScale = Vector3.Lerp(m_playerHindrance.transform.localScale,
+                new Vector3(m_playerHindrance.gameObject.transform.localScale.x, 0.0f, m_playerHindrance.transform.localScale.z), Time.deltaTime);
+        }
+        else
+        {
+            m_playerHindrance.transform.localScale = Vector3.Lerp(m_playerHindrance.transform.localScale,
+    new Vector3(m_playerHindrance.gameObject.transform.localScale.x, 12.0f, m_playerHindrance.transform.localScale.z), Time.deltaTime);
+            m_playerHindrance.enabled = true;
+        }
+
 	    if (m_cooldownTick<=0.0f)
         {
             if (m_subcooldownTick<=0.0f)

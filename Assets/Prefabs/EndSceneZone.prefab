@@ -413,7 +413,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.04888916, y: 5.52541256, z: 67.4936676}
+  m_LocalPosition: {x: 4.1947999, y: 103.730003, z: 350.730011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400042}
@@ -774,8 +774,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 17.0499992, y: 8.64999962, z: 13.1000004}
-  m_Center: {x: 5.51999998, y: -1.64999998, z: 5.82000017}
+  m_Size: {x: 60.2747917, y: 13.5345144, z: 44.1238747}
+  m_Center: {x: 10.1278896, y: .792266846, z: 18.6947021}
 --- !u!81 &8100000
 AudioListener:
   m_ObjectHideFlags: 1
@@ -1566,6 +1566,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_endScene: {fileID: 100042}
+  m_oldBoss: {fileID: 0}
+  m_oldPlayer: {fileID: 0}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
