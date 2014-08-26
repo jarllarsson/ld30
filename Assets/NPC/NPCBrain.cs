@@ -39,12 +39,13 @@ public class NPCBrain : MonoBehaviour
 
     private bool m_isHurt;
 
-
+    private Vector3 m_respawnPos;
 
     private bool m_atkState;
 
 	// Use this for initialization
 	void Awake () {
+        m_respawnPos = transform.position;
         m_animFacingDirHash = Animator.StringToHash("npc_facing_dir");
         m_animTriggerAttackHash = Animator.StringToHash("npc_atk");
         m_animIsAngryHash = Animator.StringToHash("npc_isAngry");
@@ -63,6 +64,12 @@ public class NPCBrain : MonoBehaviour
         if (m_health<=0)
         {
             die();
+        }
+
+        if (transform.position.y<-20.0f)
+        {
+            rigidbody.velocity = Vector3.zero;
+            transform.position = m_respawnPos;
         }
     }
 
@@ -102,7 +109,11 @@ public class NPCBrain : MonoBehaviour
 
         m_wallCollPenalty = Mathf.Lerp(m_wallCollPenalty, 1.0f, 0.2f);
 
-        rigidbody.drag = m_linDragWalk;
+        bool falling=(transform.position - m_oldPos).y < -0.02f;
+        if (falling)
+            rigidbody.drag = 0.0f;
+        else
+            rigidbody.drag = m_linDragWalk;
 
         Vector3 combine = Vector3.ClampMagnitude(dir, 1.0f);
         float spd = m_walkspeed;
@@ -112,7 +123,7 @@ public class NPCBrain : MonoBehaviour
             combine = Vector3.Normalize(m_player.position - transform.position);
             combine = new Vector3(combine.x, 0.0f, combine.z);
         }
-        if (!m_atkState) rigidbody.AddForce(combine * spd/* * m_wallCollPenalty*/);
+        if (!m_atkState && !falling) rigidbody.AddForce(combine * spd/* * m_wallCollPenalty*/);
         Debug.DrawLine(transform.position, transform.position + combine, new Color(combine.x,.5f,combine.z), 1.0f);
 
 
