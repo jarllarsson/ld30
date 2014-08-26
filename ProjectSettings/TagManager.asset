@@ -10,6 +10,7 @@ TagManager:
   - HPBar
   - BossEye
   - fireball
+  - invVisWall
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

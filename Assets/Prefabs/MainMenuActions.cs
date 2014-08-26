@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DeathScript : MonoBehaviour {
+public class MainMenuActions : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,14 @@ public class DeathScript : MonoBehaviour {
 	
 	}
 
-    public void die()
+
+    public void Play()
     {
-        Application.LoadLevel(0);
+        Application.LoadLevel(1);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

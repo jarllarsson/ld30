@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
         //m_speeds.Add((transform.position - m_oldPos).x);
         //while (m_speeds.Count > 100) m_speeds.RemoveAt(0);
         //m_oldPos = transform.position;
+        if (transform.position.y < -40.0f)
+            Application.LoadLevel(0);
     }
 
     void ActivateAllWalkAnims()

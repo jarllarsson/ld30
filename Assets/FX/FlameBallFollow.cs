@@ -51,9 +51,12 @@ public class FlameBallFollow : MonoBehaviour {
 
     void OnAllCollide(Collider p_coll)
     {
-        Debug.Log(p_coll.name);
-        Destroy(gameObject);
-        if (m_explode)
-            Instantiate(m_explode, transform.position, Quaternion.identity);
+        if (p_coll.gameObject.tag != "invVisWall")
+        {
+            Debug.Log(p_coll.name);
+            Destroy(gameObject);
+            if (m_explode)
+                Instantiate(m_explode, transform.position, Quaternion.identity);
+        }
     }
 }
